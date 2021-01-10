@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 import {initialState, render} from '../../../test-utils'
-import {Overview} from "../Overview";
+import {Overview} from '../Overview'
 import {State} from '../../../types'
 
 const state: State = {
@@ -13,14 +13,14 @@ const state: State = {
   hasLoaded: true
 }
 
-describe("<Overview />", () => {
-  it("When we have an empty initial state, it should display an empty overview page", async () => {
-    const { asFragment } = render(<Overview />);
+describe('<Overview />', () => {
+  it('When we have an empty initial state, it should display an empty overview page', async () => {
+    const {asFragment} = render(<Overview/>)
     expect(asFragment()).toMatchSnapshot()
-  });
+  })
 
-  it("When we have a state with 1 widget, it should display an empty overview page", async () => {
-    const { asFragment } = render(<Overview />, {initialState: state});
+  it('When we have a state with 1 widget, it should display an empty overview page', async () => {
+    const {asFragment} = render(<Overview/>, {initialState: state})
     expect(asFragment()).toMatchSnapshot()
-  });
-});
+  })
+})

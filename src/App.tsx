@@ -5,10 +5,11 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import {Container} from '@material-ui/core'
 
 function App() {
   return (
-    <div className="App">
+    <Container className="App" maxWidth="xl">
       <Router>
         <Switch>
           <Route path="/create/language">
@@ -22,7 +23,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </Container>
   )
 }
 

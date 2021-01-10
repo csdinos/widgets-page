@@ -1,4 +1,4 @@
-import {Container, Button, Grid, Typography} from '@material-ui/core'
+import {Button, Grid, Typography} from '@material-ui/core'
 import {DeleteModal, WidgetListing} from '../'
 import {useHistory} from 'react-router-dom'
 
@@ -6,7 +6,7 @@ export const Overview = () => {
   const history = useHistory()
 
   return (
-    <Container maxWidth="xl">
+    <>
       <Grid container
             direction="row"
             alignItems="center"
@@ -14,11 +14,11 @@ export const Overview = () => {
             spacing={2}
       >
         <Grid item xs={8}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h3" gutterBottom align="center">
             Available widgets
           </Typography>
         </Grid>
-        <WidgetListing />
+        <WidgetListing/>
         <Grid item xs={12} id="new-widget-btn">
           <Button
             variant="contained"
@@ -28,7 +28,7 @@ export const Overview = () => {
           >New</Button>
         </Grid>
       </Grid>
-      <DeleteModal />
-    </Container>
+      <DeleteModal/>
+    </>
   )
 }

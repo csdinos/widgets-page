@@ -11,15 +11,11 @@ export const WidgetListing = () => {
   const dispatch = useDispatch()
 
   const loadWidgetsFromLocalStorage = () => {
-    const widgets = localStorage.getItem('widgets');
+    const widgets = localStorage.getItem('widgets')
 
     if (widgets) {
-      dispatch(actions.add(JSON.parse(widgets)))
+      dispatch(actions.addWidget(JSON.parse(widgets)))
     }
-  }
-
-  const updateLocalStorage = () => {
-    localStorage.setItem('widgets', JSON.stringify(widgets))
   }
 
   useEffect(() => {
@@ -28,14 +24,18 @@ export const WidgetListing = () => {
 
       dispatch(actions.setHasLoaded(true))
     }
-  },[])
+  })
 
   useEffect(() => {
+    const updateLocalStorage = () => {
+      localStorage.setItem('widgets', JSON.stringify(widgets))
+    }
+
     if (shouldUpdateStorage) {
       updateLocalStorage()
       dispatch(actions.setShouldUpdateStorage(false))
     }
-  },[shouldUpdateStorage])
+  }, [shouldUpdateStorage, dispatch, widgets])
 
   return (
     <>

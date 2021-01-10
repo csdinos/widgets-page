@@ -25,9 +25,13 @@ Run the tests on watch mode
 
 #### `yarn cy:run`
 
+***Important: The App needs to be running as cypress visits localhost***
+
 Run the cypress integration tests
 
 #### `yarn cy:open`
+
+***Important: The App needs to be running as cypress visits localhost***
 
 Open the cypress UI tool for interactive integration testing
 

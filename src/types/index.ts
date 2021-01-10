@@ -3,6 +3,7 @@ export type Widget = {
   name: string;
   language: string;
 }
+
 export type State = {
   widgets: Array<Widget>
   newWidget: Widget

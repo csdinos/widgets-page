@@ -1,4 +1,4 @@
-import {Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, FormHelperText} from '@material-ui/core'
+import {Button, FormControl, Grid, InputLabel, MenuItem, Select, FormHelperText} from '@material-ui/core'
 import {useState, ChangeEvent} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
@@ -26,42 +26,40 @@ export const LanguageDropdown = () => {
   }
 
   return (
-    <Container maxWidth="xl">
-      <Grid container
-            direction="row"
-            alignItems="center"
-            justify="center"
-            spacing={2}
-      >
-        <Grid item xs={12}>
-          <FormControl variant="outlined" fullWidth error={error} id="language-selector"
-                       data-testid="language-form-control">
-            <InputLabel> Language </InputLabel>
-            <Select
-              fullWidth
-              value={language}
-              onChange={handleChange}
-              label="Language"
-              data-testid="language-select"
-            >
-              <MenuItem className="language-selector-item" value={'Greek'}>Greek</MenuItem>
-              <MenuItem className="language-selector-item" value={'German'}>German</MenuItem>
-              <MenuItem className="language-selector-item" value={'English'}>English</MenuItem>
-              <MenuItem className="language-selector-item" value={'Polish'}>Polish</MenuItem>
-            </Select>
-            <FormHelperText id="error-message" hidden={!error}>{errorMessage}</FormHelperText>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            id="next-btn"
+    <Grid container
+          direction="row"
+          alignItems="center"
+          justify="center"
+          spacing={2}
+    >
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth error={error} id="language-selector"
+                     data-testid="language-form-control">
+          <InputLabel> Language </InputLabel>
+          <Select
             fullWidth
-            variant="contained"
-            color="primary"
-            onClick={onNext}
-          >Next</Button>
-        </Grid>
+            value={language}
+            onChange={handleChange}
+            label="Language"
+            data-testid="language-select"
+          >
+            <MenuItem className="language-selector-item" value={'Greek'}>Greek</MenuItem>
+            <MenuItem className="language-selector-item" value={'German'}>German</MenuItem>
+            <MenuItem className="language-selector-item" value={'English'}>English</MenuItem>
+            <MenuItem className="language-selector-item" value={'Polish'}>Polish</MenuItem>
+          </Select>
+          <FormHelperText id="error-message" hidden={!error}>{errorMessage}</FormHelperText>
+        </FormControl>
       </Grid>
-    </Container>
+      <Grid item xs={12}>
+        <Button
+          id="next-btn"
+          fullWidth
+          variant="contained"
+          color="primary"
+          onClick={onNext}
+        >Next</Button>
+      </Grid>
+    </Grid>
   )
 }

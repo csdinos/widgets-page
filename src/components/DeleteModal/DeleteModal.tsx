@@ -32,7 +32,7 @@ export const DeleteModal = () => {
   }
 
   const onConfirmation = () => {
-    dispatch(actions.remove(id))
+    dispatch(actions.removeWidget(id))
     dispatch(actions.setIdForDeleteModal(null))
     dispatch(actions.setShouldUpdateStorage(true))
   }

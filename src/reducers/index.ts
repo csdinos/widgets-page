@@ -1,6 +1,5 @@
-import {handleActions} from 'redux-actions'
 import {State} from '../types'
-import {Action} from 'redux-actions'
+import {handleActions, Action} from 'redux-actions'
 
 // A bit of a cheap approach but here we are :D
 const emptyWidget = {
@@ -20,58 +19,40 @@ const defaultState: State = {
 export const reducer = handleActions(
   {
     SET_HAS_LOADED: (state: State, action: Action<any>) => ({
-      widgets: state.widgets,
-      newWidget: state.newWidget,
-      deleteModalId: state.deleteModalId,
+      ...state,
       hasLoaded: action.payload.hasLoaded,
-      shouldUpdateStorage: state.shouldUpdateStorage
     }),
-    ADD: (state: State, action: Action<any>) => ({
-      widgets: [...state.widgets.concat(action.payload.widgets)],
+    ADD_WIDGET: (state: State, action: Action<any>) => ({
+      ...state,
+      widgets: [...(state.widgets ? (state.widgets.concat(action.payload.widgets)) : [])],
       newWidget: emptyWidget,
-      deleteModalId: state.deleteModalId,
-      hasLoaded: state.hasLoaded,
-      shouldUpdateStorage: state.shouldUpdateStorage
     }),
-    REMOVE: (state: State, action: Action<any>) => ({
-      widgets: [...state.widgets.filter(w => w.id != action.payload.id)],
-      newWidget: state.newWidget,
-      deleteModalId: state.deleteModalId,
-      hasLoaded: state.hasLoaded,
-      shouldUpdateStorage: state.shouldUpdateStorage
+    REMOVE_WIDGET: (state: State, action: Action<any>) => ({
+      ...state,
+      widgets: state.widgets ? [...state.widgets.filter(w => w.id !== action.payload.id)] : [],
     }),
     SET_NEW_WIDGET_NAME: (state: State, action: Action<any>) => ({
-      widgets: state.widgets,
+      ...state,
       newWidget: {
-        ...state.newWidget,
+        language: state.newWidget?.language || '',
+        id: state.newWidget?.id || -1,
         name: action.payload.name
-      },
-      deleteModalId: state.deleteModalId,
-      hasLoaded: state.hasLoaded,
-      shouldUpdateStorage: state.shouldUpdateStorage
+      }
     }),
     SET_NEW_WIDGET_LANGUAGE: (state: State, action: Action<any>) => ({
-      widgets: state.widgets,
+      ...state,
       newWidget: {
-        ...state.newWidget,
+        name: state.newWidget?.name || '',
+        id: state.newWidget?.id || -1,
         language: action.payload.language
-      },
-      deleteModalId: state.deleteModalId,
-      hasLoaded: state.hasLoaded,
-      shouldUpdateStorage: state.shouldUpdateStorage
+      }
     }),
     SET_ID_FOR_DELETE_MODAL: (state: State, action: Action<any>) => ({
-      widgets: state.widgets,
-      newWidget: state.newWidget,
+      ...state,
       deleteModalId: action.payload.id,
-      hasLoaded: state.hasLoaded,
-      shouldUpdateStorage: state.shouldUpdateStorage
     }),
     SET_SHOULD_UPDATE_STORAGE: (state: State, action: Action<any>) => ({
-      widgets: state.widgets,
-      newWidget: state.newWidget,
-      deleteModalId: action.payload.id,
-      hasLoaded: state.hasLoaded,
+      ...state,
       shouldUpdateStorage: action.payload.shouldUpdateStorage
     }),
   },

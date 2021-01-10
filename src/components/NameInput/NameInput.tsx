@@ -1,4 +1,4 @@
-import {Button, Container, FormControl, FormHelperText, Grid, TextField} from '@material-ui/core'
+import {Button, FormControl, FormHelperText, Grid, TextField} from '@material-ui/core'
 import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
@@ -17,11 +17,11 @@ export const NameInput = () => {
     if (!newWidget.language) {
       history.push('/')
     }
-  }, [])
+  })
   const onChange = (event: any) => dispatch(actions.setNewWidgetName(event.target.value))
 
   const validate = (): boolean => {
-    if (!name || !name.length) {
+    if (!name?.length) {
       setError(true)
       setErrorMessage('Cannot be empty')
 
@@ -35,44 +35,42 @@ export const NameInput = () => {
     if (validate()) {
       newWidget.id = new Date().getTime() // surely this could have been handled better :D
 
-      dispatch(actions.add([newWidget]))
+      dispatch(actions.addWidget([newWidget]))
       dispatch(actions.setShouldUpdateStorage(true))
 
       history.push('/')
     }
   }
   return (
-    <Container maxWidth="xl">
-      <Grid container
-            direction="row"
-            alignItems="center"
-            justify="center"
-            spacing={2}
-      >
-        <Grid item xs={12}>
-          <FormControl variant="outlined" fullWidth error={error}>
-            <TextField
-              id="name-text-input"
-              label="Widget Name"
-              variant="outlined"
-              onChange={onChange}
-              error={error}
-            />
-            <FormHelperText id="error-message" hidden={!error}>{errorMessage}</FormHelperText>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            id="create-btn"
-            variant="contained"
-            color="primary"
-            onClick={onCreate}
-            fullWidth
-          >
-            Create
-          </Button>
-        </Grid>
+    <Grid container
+          direction="row"
+          alignItems="center"
+          justify="center"
+          spacing={2}
+    >
+      <Grid item xs={12}>
+        <FormControl variant="outlined" fullWidth error={error}>
+          <TextField
+            id="name-text-input"
+            label="Widget Name"
+            variant="outlined"
+            onChange={onChange}
+            error={error}
+          />
+          <FormHelperText id="error-message" hidden={!error}>{errorMessage}</FormHelperText>
+        </FormControl>
       </Grid>
-    </Container>
+      <Grid item xs={12}>
+        <Button
+          id="create-btn"
+          variant="contained"
+          color="primary"
+          onClick={onCreate}
+          fullWidth
+        >
+          Create
+        </Button>
+      </Grid>
+    </Grid>
   )
 }
