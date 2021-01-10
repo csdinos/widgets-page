@@ -1,5 +1,5 @@
 import {Container, Button, Grid, Typography} from '@material-ui/core'
-import {DeleteModal, WidgetListing} from '../.'
+import {DeleteModal, WidgetListing} from '../'
 import {useHistory} from 'react-router-dom'
 
 export const Overview = () => {

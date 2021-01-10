@@ -1,5 +1,5 @@
-import { handleActions } from 'redux-actions';
-import { State } from "../types"
+import {handleActions} from 'redux-actions'
+import {State} from '../types'
 import {Action} from 'redux-actions'
 
 // A bit of a cheap approach but here we are :D
@@ -15,7 +15,7 @@ const defaultState: State = {
   deleteModalId: null,
   hasLoaded: false,
   shouldUpdateStorage: false
-};
+}
 
 export const reducer = handleActions(
   {
@@ -76,4 +76,4 @@ export const reducer = handleActions(
     }),
   },
   defaultState
-);
+)
